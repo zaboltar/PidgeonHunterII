@@ -1,21 +1,33 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using System.Collections;
+using UnityEngine.UI;
 
 public class PlayerDamage : MonoBehaviour
 {
     public GameObject deathCanvas;
-    public int PlayerHealth = 30;
+    public int PlayerMaxHealth = 50;
+    public int PlayerHealth;
     int damage = 10;
     public Transform target;
-    public Rigidbody myRBwtf;
+    public Slider hpBar;
 
 
     void Start()
     {
-        print(PlayerHealth);
-        myRBwtf = GetComponent<Rigidbody>();
+        PlayerHealth = PlayerMaxHealth;
+        hpBar.maxValue = PlayerMaxHealth;
+        
+    }
+
+    void Update ()
+    {
+        hpBar.value = PlayerHealth;
+
+        if (PlayerHealth <= 0)
+        {
+            Die();
+        }
     }
 
     void OnCollisionEnter(Collision _collision)
@@ -23,7 +35,7 @@ public class PlayerDamage : MonoBehaviour
         if (_collision.gameObject.tag == "bullet")
         {
             PlayerHealth -= damage;
-            if (PlayerHealth <= 0)
+           /* if (PlayerHealth <= 0)
             {
 
 
@@ -33,7 +45,7 @@ public class PlayerDamage : MonoBehaviour
                     Die();
                     
                 }
-            }
+            }*/
                         
         }
                      
@@ -42,15 +54,9 @@ public class PlayerDamage : MonoBehaviour
     void Die ()
     {
        deathCanvas.SetActive(true);
-       myRBwtf.gameObject.SetActive(false);
+       gameObject.SetActive(false);
     }
 
-    private void Update()
-    {
-        if (PlayerHealth <= 0)
-        {
-            PlayerHealth = 30;
-        }
-    }
+   
 
 }

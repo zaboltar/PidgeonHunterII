@@ -1,19 +1,24 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class shooting : MonoBehaviour
 {
-
-
     public float damage = 10f;
     public float range = 100f;
     public float fireRate = 15f;
-
+    public Animator anim;
     public Camera fpsCam;
     public ParticleSystem muzzleFlash;
     public GameObject impactEffect;
     public float impactforce = 30;
-
+    
     private float nextTimeToFire = 0f;
+
+    void Start ()
+    {
+        anim = transform.GetComponentInChildren<Animator>();
+       
+    }
 
     void Update()
     {
@@ -23,10 +28,13 @@ public class shooting : MonoBehaviour
             nextTimeToFire = Time.time + 1f / fireRate;
             Shoot();
         }
+       
     }
 
     void Shoot()
     {
+        StartCoroutine(ShootCheck());
+
         muzzleFlash.Play();
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
@@ -47,7 +55,16 @@ public class shooting : MonoBehaviour
 
             GameObject impactGo = Instantiate(impactEffect, hit.point, Quaternion.LookRotation(hit.normal));
             Destroy(impactGo, 2f);
+
         }
+    }
+
+    IEnumerator ShootCheck ()
+    {
+        anim.SetBool("isShooting", true);
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("isShooting", false);
+        
     }
 
 }
