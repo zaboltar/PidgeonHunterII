@@ -1,18 +1,21 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System.Collections;
+//using System.Collections;
 
 public class PlayerDamage : MonoBehaviour
 {
-
+    public GameObject deathCanvas;
     public int PlayerHealth = 30;
     int damage = 10;
     public Transform target;
+    public Rigidbody myRBwtf;
+
 
     void Start()
     {
         print(PlayerHealth);
+        myRBwtf = GetComponent<Rigidbody>();
     }
 
     void OnCollisionEnter(Collision _collision)
@@ -24,22 +27,22 @@ public class PlayerDamage : MonoBehaviour
             {
 
 
-                transform.position = target.position;
+               // transform.position = target.position;
                 if (PlayerHealth <= 0)
                 {
-                    Application.LoadLevel(Application.loadedLevel);
-                    //just restart lvl otherwise
-
+                    Die();
+                    
                 }
             }
-
-
-
+                        
         }
+                     
+    }
 
-
-
-
+    void Die ()
+    {
+       deathCanvas.SetActive(true);
+       myRBwtf.gameObject.SetActive(false);
     }
 
     private void Update()
