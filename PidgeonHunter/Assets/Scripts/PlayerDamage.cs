@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PlayerDamage : MonoBehaviour
 {
+    public AudioSource deathFX;
     public GameObject deathCanvas;
     public int PlayerMaxHealth = 50;
     public int PlayerHealth;
@@ -34,7 +35,7 @@ public class PlayerDamage : MonoBehaviour
     {
         if (_collision.gameObject.tag == "bullet")
         {
-            PlayerHealth -= damage;
+            PlayerHealth -= 5;
            /* if (PlayerHealth <= 0)
             {
 
@@ -53,6 +54,7 @@ public class PlayerDamage : MonoBehaviour
 
     void Die ()
     {
+        deathFX.Play();
        deathCanvas.SetActive(true);
        gameObject.SetActive(false);
     }
