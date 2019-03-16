@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 
 public class shooting : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class shooting : MonoBehaviour
     public float impactforce = 30;
     
     private float nextTimeToFire = 0f;
+    public Text bullets;
+    public int currentBullets = 25;
+    public AudioSource pistolClick;
+
 
     void Start ()
     {
@@ -23,16 +28,28 @@ public class shooting : MonoBehaviour
     void Update()
     {
 
+
         if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
             nextTimeToFire = Time.time + 1f / fireRate;
-            Shoot();
+            if (currentBullets > 0 )
+            {
+                Shoot();
+            } else
+            {
+                pistolClick.Play();
+            }
+            
         }
-       
+
+        bullets.text = "Bullets: "+currentBullets.ToString();
+
+
     }
 
     void Shoot()
     {
+        currentBullets = currentBullets - 1;
         StartCoroutine(ShootCheck());
 
         muzzleFlash.Play();
