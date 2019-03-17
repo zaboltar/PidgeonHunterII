@@ -22,20 +22,30 @@ public class WeapArsenal : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            HandGun.SetActive(false);
-            SecrWeap.SetActive(true);
-            transform.GetComponentInParent<shooting>().enabled = false;
-            transform.GetComponentInParent<PlayerMeleeAttack>().enabled = true;
+            SetWeaponToSecretWeapon();
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            HandGun.SetActive(true);
-            SecrWeap.SetActive(false);
-
-            transform.GetComponentInParent<shooting>().enabled = true;
-            
-            transform.GetComponentInParent<PlayerMeleeAttack>().enabled = false;
+            SetWeaponToPistol();
         }
+    }
+
+    public void SetWeaponToPistol()
+    {
+        HandGun.SetActive(true);
+        SecrWeap.SetActive(false);
+
+        transform.GetComponentInParent<shooting>().enabled = true;
+
+        transform.GetComponentInParent<PlayerMeleeAttack>().enabled = false;
+    }
+
+    public void SetWeaponToSecretWeapon()
+    {
+        HandGun.SetActive(false);
+        SecrWeap.SetActive(true);
+        transform.GetComponentInParent<shooting>().enabled = false;
+        transform.GetComponentInParent<PlayerMeleeAttack>().enabled = true;
     }
 }

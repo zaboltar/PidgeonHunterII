@@ -6,6 +6,12 @@ public class Target : MonoBehaviour
     public AudioSource dmgFX;
     public float health = 50f;
     public Transform spawnPosition;
+    public GameObject Player;
+
+    void Start ()
+    {
+       
+    }
 
     public void TakeDamage(float amount)
     {
@@ -19,6 +25,7 @@ public class Target : MonoBehaviour
 
     void Die()
     {
+        Player.GetComponent<PlayerAttributes>().enemiesKilled += 1;
         deathFX.Play();
         Destroy(gameObject);
 
