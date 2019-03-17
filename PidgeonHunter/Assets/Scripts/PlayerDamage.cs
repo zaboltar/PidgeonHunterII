@@ -12,6 +12,7 @@ public class PlayerDamage : MonoBehaviour
     int damage = 10;
     public Transform target;
     public Slider hpBar;
+    public Text hpText;
 
 
     void Start()
@@ -23,12 +24,16 @@ public class PlayerDamage : MonoBehaviour
 
     void Update ()
     {
+        
         hpBar.value = PlayerHealth;
+        hpBar.maxValue = PlayerMaxHealth;
 
         if (PlayerHealth <= 0)
         {
             Die();
         }
+
+        hpText.text = "HP: " + PlayerHealth + " / " + PlayerMaxHealth;
     }
 
     void OnCollisionEnter(Collision _collision)

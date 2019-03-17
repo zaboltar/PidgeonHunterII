@@ -11,6 +11,12 @@ public class healthPickUp : MonoBehaviour
         if (other.tag == "Player")
         {
             other.GetComponent<PlayerDamage>().PlayerHealth = other.GetComponent<PlayerDamage>().PlayerHealth + 40;
+            if (other.GetComponent<PlayerDamage>().PlayerHealth >= other.GetComponent<PlayerDamage>().PlayerMaxHealth)
+            {
+                other.GetComponent<PlayerDamage>().PlayerHealth = other.GetComponent<PlayerDamage>().PlayerMaxHealth;
+            }
+
+
             healPlayerSFX.Play();
             Destroy(gameObject);
         }
