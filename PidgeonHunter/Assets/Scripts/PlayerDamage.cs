@@ -13,7 +13,7 @@ public class PlayerDamage : MonoBehaviour
     public Transform target;
     public Slider hpBar;
     public Text hpText;
-
+    public AudioSource hurtSFX;
 
     void Start()
     {
@@ -41,17 +41,8 @@ public class PlayerDamage : MonoBehaviour
         if (_collision.gameObject.tag == "bullet")
         {
             PlayerHealth -= 5;
-           /* if (PlayerHealth <= 0)
-            {
-
-
-               // transform.position = target.position;
-                if (PlayerHealth <= 0)
-                {
-                    Die();
-                    
-                }
-            }*/
+            hurtSFX.Play();
+            Destroy(_collision.gameObject);
                         
         }
                      

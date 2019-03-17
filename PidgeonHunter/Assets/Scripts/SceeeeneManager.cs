@@ -9,7 +9,7 @@ public class SceeeeneManager : MonoBehaviour
     {
         if (deathCanvas.activeInHierarchy && Input.GetKey(KeyCode.R) )
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1); //esto es una bomba de tiempo
         }
     }
 

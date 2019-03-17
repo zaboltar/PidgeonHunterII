@@ -14,6 +14,19 @@ public class PlayerAttributes : MonoBehaviour
     public GameObject lvlUpMsg;
     private PlayerDamage playerDmg;
 
+    // stat things from new character creation
+    public enum Gender {Woman, Man, NonBinary};
+    public Gender currentGender;
+
+    public enum JobClass {Warrior, Shooter, Wizard};
+    public JobClass currentJobClass;
+
+    public enum PhilPers {Idealist, Rationalist, Empirist};
+    public PhilPers currentPhilPers;
+
+    public enum BonusStat {Speed, Damage, Theological}
+    public BonusStat currentBonusStat;
+
 
     // Start is called before the first frame update
     void Start()
