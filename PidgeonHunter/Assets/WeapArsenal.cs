@@ -36,7 +36,7 @@ public class WeapArsenal : MonoBehaviour
         Uzi.SetActive(false);
         Sniper.SetActive(false);
 
-        transform.GetComponentInParent<shooting>().enabled = false;
+        //transform.GetComponentInParent<shooting>().enabled = false;
         transform.GetComponentInParent<PlayerMeleeAttack>().enabled = false;
     }
 

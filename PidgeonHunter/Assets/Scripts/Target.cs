@@ -18,8 +18,9 @@ public class Target : MonoBehaviour
 
     public void TakeDamage(float amount)
     {
-        health -= amount;
         dmgFX.Play();
+        health -= amount;
+        
         if (health <= 0f)
         {
             Die();
