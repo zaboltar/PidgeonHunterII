@@ -12,6 +12,7 @@ public class secretWeapToPick : MonoBehaviour
         {
             other.GetComponentInChildren<WeapArsenal>().SetWeaponToSecretWeapon();
             chickFX.Play();
+            other.GetComponentInChildren<WeapArsenal>().hasSecrWeap = true;
             Destroy(gameObject);
         }
     }

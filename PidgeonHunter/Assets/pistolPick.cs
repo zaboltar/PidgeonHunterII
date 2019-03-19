@@ -13,6 +13,7 @@ public class pistolPick : MonoBehaviour
         {
             other.GetComponentInChildren<WeapArsenal>().SetWeaponToPistol();
             pickPistolSFX.Play();
+            other.GetComponentInChildren<WeapArsenal>().hasHandGun = true;
             Destroy(gameObject);
         }
     }

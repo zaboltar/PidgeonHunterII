@@ -5,6 +5,10 @@ using UnityEngine.UI;
 
 public class PlayerAttributes : MonoBehaviour
 {
+
+    public int currentBullets = 25;
+    public Text bullets;
+
     public int enemiesKilled;
     public Text enemiesKilledText;
     public Text lvlTxt;
@@ -37,6 +41,8 @@ public class PlayerAttributes : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bullets.text = "Bullets: " + currentBullets.ToString();
+
         if (currentExp >= toLevelUp[currentLvl])
         {
             currentLvl++;

@@ -10,8 +10,8 @@ public class AmmoPickUp : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            other.GetComponentInChildren<WeapArsenal>().SetWeaponToPistol();
-            other.GetComponent<shooting>().currentBullets = other.GetComponent<shooting>().currentBullets + 10;
+            //other.GetComponentInChildren<WeapArsenal>().SetWeaponToPistol();
+            other.GetComponent<PlayerAttributes>().currentBullets = other.GetComponent<PlayerAttributes>().currentBullets + 40;
             bulletPick.Play();
             Destroy(gameObject);
         }

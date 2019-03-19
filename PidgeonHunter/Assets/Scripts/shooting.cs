@@ -14,14 +14,18 @@ public class shooting : MonoBehaviour
     public float impactforce = 30;
     
     private float nextTimeToFire = 0f;
-    public Text bullets;
-    public int currentBullets = 25;
+   // public Text bullets;
+   // public int currentBullets;
     public AudioSource pistolClick;
+   // private Animation weapAnim;
+    public AudioSource shootFX;
 
 
     void Start ()
     {
+       // currentBullets = transform.GetComponentInParent<PlayerAttributes>().currentBullets;
         anim = transform.GetComponentInChildren<Animator>();
+        //weapAnim = GetComponent<Animation>();
        
     }
 
@@ -32,7 +36,7 @@ public class shooting : MonoBehaviour
         if (Input.GetButton("Fire1") && Time.time >= nextTimeToFire)
         {
             nextTimeToFire = Time.time + 1f / fireRate;
-            if (currentBullets > 0 )
+            if (transform.GetComponentInParent<PlayerAttributes>().currentBullets > 0 )
             {
                 Shoot();
             } else
@@ -41,22 +45,20 @@ public class shooting : MonoBehaviour
             }
             
         }
-
-        bullets.text = "Bullets: "+currentBullets.ToString();
-
-
     }
 
     void Shoot()
     {
-        currentBullets = currentBullets - 1;
+        shootFX.Play();
+        //weapAnim.Play();
+        transform.GetComponentInParent<PlayerAttributes>().currentBullets = transform.GetComponentInParent<PlayerAttributes>().currentBullets - 1;
         StartCoroutine(ShootCheck());
 
         muzzleFlash.Play();
         RaycastHit hit;
         if (Physics.Raycast(fpsCam.transform.position, fpsCam.transform.forward, out hit, range))
         {
-            Debug.Log(hit.transform.name);
+            //Debug.Log(hit.transform.name);
 
             Target target = hit.transform.GetComponent<Target>();
             if (target != null)
