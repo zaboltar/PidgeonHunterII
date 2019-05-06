@@ -24,6 +24,17 @@ public class PlayerMeleeAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+            handAnim.SetBool("hasTested", true);
+        }
+
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            handAnim.SetBool("hasTested", false);
+        }
+
         attackTimer += Time.deltaTime;
 
         if (Input.GetMouseButtonUp(0) && attackTimer >= mySW.attackCooldown)
