@@ -6,6 +6,9 @@ using UnityEngine.Networking;
 public class PlayerObject : NetworkBehaviour
 { 
     public GameObject playerUnitPrefabObj;
+    //syncvar es equivalente a usar rpc, el contrauso de command
+    [SyncVar(hook="OnPlayerNameChanged")]
+    public string PlayerName = "PidgeonHunter001";
 
     // Start is called before the first frame update
     void Start()
@@ -29,11 +32,24 @@ public class PlayerObject : NetworkBehaviour
         {
            CmdSpawnMyUnit();
         }
+
+         if (Input.GetKeyDown(KeyCode.Q))
+        {
+           string n = "PidgeonHunter" + Random.Range(1,666);
+           
+           CmdChangePlayerName(n);
+        }
+    }
+
+    void OnPlayerNameChanged(string newName)
+    {
+        PlayerName = newName;
+        gameObject.name = "PlayerConnectionObject ["+newName+"]";
     }
 
     //GameObject myPlayerUnit;
 
-
+    // Commands are a way to a client to send a msg to a server
     [Command]
     void CmdSpawnMyUnit() 
     {
@@ -41,6 +57,14 @@ public class PlayerObject : NetworkBehaviour
        // myPlayerUnit = go;
        // go.GetComponent<NetworkIdentity>().AssignClientAuthority(connectionToClient);
         NetworkServer.SpawnWithClientAuthority(go, connectionToClient);
+    }
+
+    [Command]
+    void CmdChangePlayerName(string n) 
+    {
+        PlayerName = n;
+        //RpcChangePlayerName(PlayerName);
+
     }
 
      /* [Command]
@@ -53,4 +77,12 @@ public class PlayerObject : NetworkBehaviour
 
          myPlayerUnit.transform.Translate(0,1,0);
      } */
+
+     //RPC: functions only executed on clients
+
+     /* [ClientRpc]
+     void RpcChangePlayerName(string n)
+     {
+         PlayerName = n;
+     }*/
 }
