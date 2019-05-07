@@ -525,7 +525,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35e89cd6df36d1840b58650be8173f44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  deathFX: {fileID: 0}
+  deathFX: {fileID: 7347366347707362934, guid: 645413a00f7bd0242bbd6d0e5eb6f439, type: 3}
   deathCanvas: {fileID: 0}
   PlayerMaxHealth: 50
   PlayerHealth: 50
@@ -616,7 +616,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 618103224364876408}
   hand: {fileID: 618103224928675958}
-  mySW: {fileID: 0}
+  mySW: {fileID: 618103224932241616}
   handAnim: {fileID: 618103224932241617}
   SWAtckSFX: {fileID: 0}
 --- !u!65 &618103224297628607
@@ -651,7 +651,7 @@ MonoBehaviour:
   lvlTxt: {fileID: 0}
   currentExp: 0
   currentLvl: 1
-  toLevelUp: 00000000010000000300000005000000070000000a0000000f000000140000001e0000009a020000
+  toLevelUp: 0000000003000000050000000a00000032000000640000002c010000f4010000e803000040420f00
   lvlUpMsg: {fileID: 0}
   currentGender: 0
   currentJobClass: 0

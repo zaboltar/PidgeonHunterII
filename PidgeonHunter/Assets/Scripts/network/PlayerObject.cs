@@ -28,12 +28,12 @@ public class PlayerObject : NetworkBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(KeyCode.Y))
         {
            CmdSpawnMyUnit();
         }
 
-         if (Input.GetKeyDown(KeyCode.Q))
+         if (Input.GetKeyDown(KeyCode.U))
         {
            string n = "PidgeonHunter" + Random.Range(1,666);
            
